@@ -1,3 +1,3 @@
-import { testFunc } from './rpc';
+import rpc from './rpc';
 
-export { testFunc };
+export default { rpc };

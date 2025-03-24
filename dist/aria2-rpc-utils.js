@@ -20,11 +20,72 @@ return /******/ (() => { // webpackBootstrap
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   testFunc: () => (/* binding */ testFunc)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-const testFunc = (a, b) => {
-  return a + b;
+/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ "./src/rpc/task.js");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ task: _task__WEBPACK_IMPORTED_MODULE_0__["default"] });
+
+
+/***/ }),
+
+/***/ "./src/rpc/task.js":
+/*!*************************!*\
+  !*** ./src/rpc/task.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * 将一个下载任务推送至aria2 RPC
+ * @param {string} url 下载链接
+ * @param {string} filename 文件名
+ * @returns { string } GID
+ */
+const addAria2Task = async (url, filename) => {
+  const rpcUrl = 'http://localhost:6800/jsonrpc'; // Aria2 RPC 地址
+
+  const requestData = {
+    jsonrpc: '2.0',
+    method: 'aria2.addUri',
+    id: 'qwer',
+    params: [
+      [url],
+      {
+        out: filename, // 文件名
+      },
+    ],
+  };
+
+  try {
+    const response = await fetch(rpcUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestData),
+    });
+
+    const result = await response.json();
+    if (result.result) {
+      const gid = result.result; // 获取任务 GID
+      console.info('下载任务添加成功，GID:', gid);
+      return gid;
+    } else {
+      console.warn('下载任务添加失败:', result);
+      return null;
+    }
+  } catch (error) {
+    console.error('请求失败:', error);
+    return null;
+  }
 };
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  addAria2Task,
+});
 
 
 /***/ })
@@ -93,12 +154,12 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   testFunc: () => (/* reexport safe */ _rpc__WEBPACK_IMPORTED_MODULE_0__.testFunc)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _rpc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rpc */ "./src/rpc/index.js");
 
 
-
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ rpc: _rpc__WEBPACK_IMPORTED_MODULE_0__["default"] });
 
 })();
 

@@ -1,3 +1,3 @@
-export const testFunc = (a, b) => {
-  return a + b;
-};
+import task from './task';
+
+export default { task };
