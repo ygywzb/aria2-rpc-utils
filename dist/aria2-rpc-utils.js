@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["Aria2RPCTools"] = factory();
+		exports["Aria2RPCUtils"] = factory();
 	else
-		root["Aria2RPCTools"] = factory();
+		root["Aria2RPCUtils"] = factory();
 })(this, () => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
@@ -106,4 +106,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ })()
 ;
 });
-//# sourceMappingURL=aria2-rpc-tools.js.map
+//# sourceMappingURL=aria2-rpc-utils.js.map
