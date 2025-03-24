@@ -4,8 +4,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'area2-rpc-tools.js',
-    library: 'Area2RPCTools',
+    filename: 'aria2-rpc-tools.js',
+    library: 'Aria2RPCTools',
     libraryTarget: 'umd',
     globalObject: 'this',
   },

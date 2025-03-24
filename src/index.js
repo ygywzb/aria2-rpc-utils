@@ -1,1 +1,3 @@
-const abc = 12345;
+import { testFunc } from './rpc';
+
+export { testFunc };
