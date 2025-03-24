@@ -1,6 +1,7 @@
 /**
  * 根据任务唯一ID，获取该任务下载进度
  * @param {string} gid 任务唯一ID
+ * @returns {Object} 进度详情对象
  */
 const getAria2Status = async (gid) => {
   const rpcUrl = 'http://localhost:6800/jsonrpc';
@@ -18,7 +19,7 @@ const getAria2Status = async (gid) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestData),
     });
-    const result = await response.json();
+    const result = await response.json().result;
     console.info('任务状态:', result);
     return result;
   } catch (error) {
