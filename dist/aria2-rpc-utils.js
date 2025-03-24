@@ -23,9 +23,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ "./src/rpc/task.js");
+/* harmony import */ var _status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./status */ "./src/rpc/status.js");
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ task: _task__WEBPACK_IMPORTED_MODULE_0__["default"] });
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ ..._task__WEBPACK_IMPORTED_MODULE_0__["default"], ..._status__WEBPACK_IMPORTED_MODULE_1__["default"] });
+
+
+/***/ }),
+
+/***/ "./src/rpc/status.js":
+/*!***************************!*\
+  !*** ./src/rpc/status.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * 根据任务唯一ID，获取该任务下载进度
+ * @param {string} gid 任务唯一ID
+ */
+const getAria2Status = async (gid) => {
+  const rpcUrl = 'http://localhost:6800/jsonrpc';
+
+  const requestData = {
+    jsonrpc: '2.0',
+    method: 'aria2.tellStatus',
+    id: 'qwer',
+    params: [gid], // gid 是任务的唯一 ID
+  };
+
+  try {
+    const response = await fetch(rpcUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestData),
+    });
+    const result = await response.json();
+    console.info('任务状态:', result);
+    return result;
+  } catch (error) {
+    console.error('请求失败:', error);
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ getAria2Status });
 
 
 /***/ }),
